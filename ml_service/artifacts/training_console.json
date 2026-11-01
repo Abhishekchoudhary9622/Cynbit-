@@ -1,0 +1,28 @@
+{
+  "model": "TF-IDF + LogisticRegression",
+  "task": "service-intent classification",
+  "accuracy_test_split": 0.7857,
+  "macro_f1_test_split": 0.7885,
+  "train_rows": 84,
+  "test_rows": 28,
+  "total_rows": 112,
+  "classes": [
+    "AI Automation",
+    "Cloud Infrastructure",
+    "Digital Marketing & SEO",
+    "EdTech & Career Learning",
+    "Property Management",
+    "Reputation Management",
+    "Software Development"
+  ],
+  "confusion_matrix_labels": [
+    "AI Automation",
+    "Cloud Infrastructure",
+    "Digital Marketing & SEO",
+    "EdTech & Career Learning",
+    "Property Management",
+    "Reputation Management",
+    "Software Development"
+  ],
+  "data_warning": "Training examples are curated synthetic examples, not actual Cynbit visitor or CRM data. Test metrics measure this small synthetic benchmark only; they are not production performance estimates."
+}

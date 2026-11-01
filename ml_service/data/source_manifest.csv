@@ -1,0 +1,32 @@
+id,type,title,category,source_url
+home,company,Cynbit Technologies – Company overview,company,https://www.cynbit.in
+services-ai,service,AI automation and autonomous agents,AI Automation,https://www.cynbit.in/services
+services-software,service,Full-stack and backend software development,Software Development,https://www.cynbit.in/services
+services-cloud,service,Cloud infrastructure and migration,Cloud Infrastructure,https://www.cynbit.in/services
+services-marketing,service,"Digital marketing, SEO and CRM automation",Digital Marketing & SEO,https://www.cynbit.in/services
+product-studio,product,Cynbit Studio,EdTech & Career Learning,https://www.cynbit.in/products#cynbit-studio
+product-tenantease,product,TenantEase,Property Management,https://www.cynbit.in/products#tenantease
+product-revio,product,Revio,Reputation Management,https://www.cynbit.in/products#revio
+case-wizhealth,case_study,WizHealth: AI Diagnostic Triage: Enhancing Medical Efficiency.,Healthcare,https://www.cynbit.in/case-studies/wizhealth-ai-diagnostic
+case-pragya,case_study,Pragya Healths: IoT Remote Patient Monitoring for Rural Health.,Healthcare,https://www.cynbit.in/case-studies/pragya-healths-remote-monitoring
+case-wild-basil,case_study,Wild Basil: Blockchain-Lite Transparency for Sustainable Food.,Food / Supply Chain,https://www.cynbit.in/case-studies/wild-basil-supply-chain
+case-sofiasa,case_study,Sofiasa: Modernizing Legacy ERP for the Digital Era.,Enterprise Software,https://www.cynbit.in/case-studies/sofiasa-erp-modernization
+case-econtentprep,case_study,EContentPrep: AI-Driven Adaptive Learning Pathways for EdTech.,Education / EdTech,https://www.cynbit.in/case-studies/econtentprep-adaptive-learning
+case-cloudy-tales,case_study,Cloudy Tales: Real-time Collaborative Engine for Digital Storytellers.,Software / Collaboration,https://www.cynbit.in/case-studies/cloudy-tales-collaboration
+case-urban-wardrobe,case_study,Urban Wardrobe: AR Virtual Try-On: Redefining the Fashion Experience.,Retail / Fashion,https://www.cynbit.in/case-studies/urban-wardrobe-ar-integration
+case-evento,case_study,Evento: Scaling Real-time Ticketing for Major Entertainment.,Events / Ticketing,https://www.cynbit.in/case-studies/evento-ticketing-scalability
+case-marketing-addict,case_study,Marketing Addict: AI-Powered Campaign Optimization for Global Marketing.,Marketing,https://www.cynbit.in/case-studies/marketing-addict-ai-optimization
+case-globalpay,case_study,GlobalPay: Revolutionizing cross-border payments for the next billion users.,Fintech,https://www.cynbit.in/case-studies/fintech-payments-evolution
+case-elitevogue,case_study,EliteVogue: Next-Gen Headless Commerce for Global Fashion.,Retail / E-commerce,https://www.cynbit.in/case-studies/fashion-headless-commerce
+case-careplus,case_study,CarePlus: Migrating critical health data to the cloud with zero downtime.,Healthcare / Cloud,https://www.cynbit.in/case-studies/healthcare-cloud-migration
+case-trendmart,case_study,TrendMart: Hyper-local SEO strategy yields record organic growth for retail chain.,Retail / Marketing,https://www.cynbit.in/case-studies/retail-seo-growth
+blog-ai-support,blog,Future of AI-Powered Customer Support Systems,AI Chatbots,https://www.cynbit.in/blog/future-ai-customer-support
+blog-ai-agents,blog,How AI Agents Are Transforming Business Operations in 2026,AI Agents,https://www.cynbit.in/blog/ai-agents-business-operations
+blog-small-business,blog,How Small Businesses Can Automate Operations Using AI,Business Automation,https://www.cynbit.in/blog/small-business-ai-automation
+blog-lead-gen,blog,How Companies Are Using AI for Lead Generation in 2026,Marketing,https://www.cynbit.in/blog/ai-lead-generation
+blog-ai-trends,blog,Best AI Automation Trends for Businesses in 2026,AI Automation,https://www.cynbit.in/blog/ai-automation-trends-2026
+blog-crm,blog,Best CRM Automation Strategies for Modern Companies in 2026,IT Strategy,https://www.cynbit.in/blog/best-crm-automation-strategies
+blog-dashboard,blog,Why Every Startup Needs a Custom Dashboard in 2026,SaaS Development,https://www.cynbit.in/blog/why-startups-need-custom-dashboards
+blog-ai-software,blog,AI vs Traditional Software Development in 2026,Software Development,https://www.cynbit.in/blog/ai-vs-traditional-software
+blog-privacy,blog,Data Privacy as a Competitive Advantage,Marketing / Privacy,https://www.cynbit.in/blog/data-privacy-advantage
+contact,contact,Contact and enquiry information,contact,https://www.cynbit.in/contact

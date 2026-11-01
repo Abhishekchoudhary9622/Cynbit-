@@ -1,0 +1,113 @@
+text,label,data_origin
+We need an AI chatbot to answer customer questions on our website.,AI Automation,curated_synthetic_example_not_customer_data
+Automate repetitive support tickets and route complex queries to staff.,AI Automation,curated_synthetic_example_not_customer_data
+Build autonomous AI agents for our sales and operations teams.,AI Automation,curated_synthetic_example_not_customer_data
+We want an LLM workflow to extract information from invoices and documents.,AI Automation,curated_synthetic_example_not_customer_data
+Connect an AI voice assistant to our appointment booking process.,AI Automation,curated_synthetic_example_not_customer_data
+Automate lead follow ups and customer communication using AI.,AI Automation,curated_synthetic_example_not_customer_data
+Use machine learning to classify incoming support requests by urgency.,AI Automation,curated_synthetic_example_not_customer_data
+We need an intelligent assistant that can search our company knowledge base.,AI Automation,curated_synthetic_example_not_customer_data
+Our employees copy data between tools and we want to automate this workflow.,AI Automation,curated_synthetic_example_not_customer_data
+Create an AI agent that can research information and prepare reports.,AI Automation,curated_synthetic_example_not_customer_data
+Build a document processing system that reads forms and extracts fields.,AI Automation,curated_synthetic_example_not_customer_data
+We need generative AI integrated into our existing SaaS product.,AI Automation,curated_synthetic_example_not_customer_data
+Help us automate customer onboarding with an intelligent assistant.,AI Automation,curated_synthetic_example_not_customer_data
+We want to reduce manual data entry using NLP and AI.,AI Automation,curated_synthetic_example_not_customer_data
+Create a conversational assistant with human escalation.,AI Automation,curated_synthetic_example_not_customer_data
+We need an AI workflow that categorizes and responds to incoming emails.,AI Automation,curated_synthetic_example_not_customer_data
+Build a custom web application for our business.,Software Development,curated_synthetic_example_not_customer_data
+We need a scalable SaaS platform with user accounts and dashboards.,Software Development,curated_synthetic_example_not_customer_data
+Develop a mobile app connected to our existing backend.,Software Development,curated_synthetic_example_not_customer_data
+Our old ERP interface is difficult to use and needs modernization.,Software Development,curated_synthetic_example_not_customer_data
+Create a real time collaboration application for multiple users.,Software Development,curated_synthetic_example_not_customer_data
+We need a GraphQL API and a modern Next.js frontend.,Software Development,curated_synthetic_example_not_customer_data
+Develop a ticket booking platform that can handle many users.,Software Development,curated_synthetic_example_not_customer_data
+Build a custom backend system and integrate third party APIs.,Software Development,curated_synthetic_example_not_customer_data
+We want to migrate our monolithic application to a modern architecture.,Software Development,curated_synthetic_example_not_customer_data
+Create an e commerce website with a headless commerce architecture.,Software Development,curated_synthetic_example_not_customer_data
+We need a secure web portal for customers and employees.,Software Development,curated_synthetic_example_not_customer_data
+Develop a dashboard application to manage our operations.,Software Development,curated_synthetic_example_not_customer_data
+Build a mobile optimized application with camera based AR features.,Software Development,curated_synthetic_example_not_customer_data
+We need software development support for a new digital product.,Software Development,curated_synthetic_example_not_customer_data
+Our application needs better performance and scalable backend services.,Software Development,curated_synthetic_example_not_customer_data
+Create a platform with real time updates and WebSocket communication.,Software Development,curated_synthetic_example_not_customer_data
+Migrate our application and database to AWS.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+We need a secure cloud infrastructure on Azure.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Our servers crash when traffic suddenly increases.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Deploy our containers using Kubernetes and Docker.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+We need autoscaling infrastructure for our SaaS application.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Migrate legacy systems to a cloud environment with minimal downtime.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Create a disaster recovery and backup strategy for our cloud services.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Our API needs better availability and infrastructure monitoring.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Set up CI CD pipelines and infrastructure as code with Terraform.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+We need a zero trust cloud architecture for sensitive information.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Build a serverless architecture for event driven workloads.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Improve database replication and cloud reliability.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+We need to modernize our monolithic infrastructure.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Plan a phased cloud migration for our enterprise applications.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Our platform needs resilient hosting across multiple environments.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Help us optimize cloud deployment and operations.,Cloud Infrastructure,curated_synthetic_example_not_customer_data
+Improve our website ranking on Google search.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+We need technical SEO and site audit automation.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+Run Google and Meta advertising campaigns for lead generation.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+Build a marketing funnel and improve landing page conversions.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+We want to automate CRM follow ups for new leads.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+Increase local search visibility for our retail locations.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+Analyze campaign performance and optimize advertising spend.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+We need content and keyword strategy for organic growth.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+Help us improve our digital marketing and online presence.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+Create location based landing pages for our stores.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+Our marketing data is fragmented across platforms and needs reporting.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+We need automated lead nurturing and campaign management.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+Improve our paid advertising return on investment.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+We want SEO monitoring and technical recommendations.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+Build a marketing analytics dashboard for multiple ad channels.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+Help us improve organic traffic and search performance.,Digital Marketing & SEO,curated_synthetic_example_not_customer_data
+We need software to manage rental properties and tenants.,Property Management,curated_synthetic_example_not_customer_data
+Track rent collection and automatically remind tenants about dues.,Property Management,curated_synthetic_example_not_customer_data
+Manage building units and check which rooms are vacant.,Property Management,curated_synthetic_example_not_customer_data
+Create digital tenant profiles with contact and ID records.,Property Management,curated_synthetic_example_not_customer_data
+We want a property management dashboard for rental income.,Property Management,curated_synthetic_example_not_customer_data
+Our property business uses notebooks to track rent payments.,Property Management,curated_synthetic_example_not_customer_data
+Build a system for landlords to manage multiple buildings.,Property Management,curated_synthetic_example_not_customer_data
+We need automated rent reminders and payment history.,Property Management,curated_synthetic_example_not_customer_data
+Track occupancy and revenue across our rental properties.,Property Management,curated_synthetic_example_not_customer_data
+Create an application for property owners and tenants.,Property Management,curated_synthetic_example_not_customer_data
+"We need to manage leases, tenants and unit availability.",Property Management,curated_synthetic_example_not_customer_data
+Centralize property records and rental payment information.,Property Management,curated_synthetic_example_not_customer_data
+Build a digital platform for residential property management.,Property Management,curated_synthetic_example_not_customer_data
+Help us replace manual tenant tracking with software.,Property Management,curated_synthetic_example_not_customer_data
+We want to monitor rent collection across multiple locations.,Property Management,curated_synthetic_example_not_customer_data
+Create a tenant management portal with notifications.,Property Management,curated_synthetic_example_not_customer_data
+Build an adaptive learning platform for students.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+We need an AI coding mentor for programming learners.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+Create coding assessments and evaluate code quality automatically.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+Build a platform for mock technical interviews and resume preparation.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+We want personalized learning paths based on student performance.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+Create an online coding practice platform with progress tracking.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+We need a student skill assessment and certificate system.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+Develop an AI mentor that gives hints for programming challenges.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+Build an education platform that adjusts lesson difficulty.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+Help students prepare for placements with coding missions.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+We need a dashboard to track student learning progress.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+Create an employability platform for developers.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+We want AI feedback on code quality rather than only test results.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+Build a job matching and resume tool for students.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+Develop a personalized computer science learning application.,EdTech & Career Learning,curated_synthetic_example_not_customer_data
+"Create a platform combining learning, assessments and career preparation.",EdTech & Career Learning,curated_synthetic_example_not_customer_data
+Monitor customer reviews from multiple platforms.,Reputation Management,curated_synthetic_example_not_customer_data
+We need AI to draft responses to Google reviews.,Reputation Management,curated_synthetic_example_not_customer_data
+Analyze customer feedback and detect negative sentiment.,Reputation Management,curated_synthetic_example_not_customer_data
+Manage online reputation for all our business branches.,Reputation Management,curated_synthetic_example_not_customer_data
+We want to sync reviews across social and review platforms.,Reputation Management,curated_synthetic_example_not_customer_data
+Alert our team when negative reviews appear online.,Reputation Management,curated_synthetic_example_not_customer_data
+Create a dashboard to monitor brand sentiment by location.,Reputation Management,curated_synthetic_example_not_customer_data
+Automate customer review replies while allowing human approval.,Reputation Management,curated_synthetic_example_not_customer_data
+We need a reputation management platform for a multi location brand.,Reputation Management,curated_synthetic_example_not_customer_data
+Track ratings and review trends for our stores.,Reputation Management,curated_synthetic_example_not_customer_data
+Identify potential reputation crises from customer feedback.,Reputation Management,curated_synthetic_example_not_customer_data
+Centralize review monitoring and response management.,Reputation Management,curated_synthetic_example_not_customer_data
+We need sentiment analysis for online customer comments.,Reputation Management,curated_synthetic_example_not_customer_data
+Help our team respond consistently to customer reviews.,Reputation Management,curated_synthetic_example_not_customer_data
+Build a tool to monitor brand reputation across review sites.,Reputation Management,curated_synthetic_example_not_customer_data
+"Manage review workflows for admins, managers and branch advisors.",Reputation Management,curated_synthetic_example_not_customer_data

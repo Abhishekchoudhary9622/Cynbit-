@@ -1,0 +1,107 @@
+/* SmartConnect AI CSS */
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 25px -5px rgba(0, 96, 103, 0.4);
+  }
+  50% {
+    transform: scale(1.03);
+    box-shadow: 0 20px 35px -5px rgba(0, 96, 103, 0.6);
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3s ease-in-out infinite;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-fade-scale {
+  animation: fadeInScale 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom scrollbar for chat message list */
+.smartconnect-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.smartconnect-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.smartconnect-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 96, 103, 0.2);
+  border-radius: 10px;
+}
+
+.smartconnect-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 96, 103, 0.4);
+}
+
+/* Code block container styling */
+.smartconnect-codeblock {
+  background: #181c1d;
+  color: #e0f2f1;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  margin: 0.75rem 0;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.smartconnect-codeblock-header {
+  background: #232a2b;
+  padding: 0.35rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.7rem;
+  color: #96f1fa;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.smartconnect-codeblock-content {
+  padding: 0.75rem;
+  overflow-x: auto;
+  white-space: pre;
+  line-height: 1.5;
+}
+
+/* Markdown table styling */
+.smartconnect-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.75rem 0;
+  font-size: 0.8rem;
+}
+
+.smartconnect-table th,
+.smartconnect-table td {
+  border: 1px solid #e0e3e3;
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+
+.smartconnect-table th {
+  background-color: #ebeeee;
+  font-weight: 700;
+  color: #006067;
+}
+
+.smartconnect-table tr:nth-child(even) {
+  background-color: #f7fafa;
+}
+

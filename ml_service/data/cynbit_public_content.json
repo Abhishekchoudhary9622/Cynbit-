@@ -1,0 +1,541 @@
+{
+  "source": "https://www.cynbit.in/",
+  "sitemap_url": "https://www.cynbit.in/sitemap.xml",
+  "crawl_date": "2026-11-01",
+  "sitemap_url_count": 82,
+  "note": "This is a structured extraction/summary of selected publicly accessible pages inspected for this prototype, not a complete archive of all 82 URLs. The scraper script can refresh public pages while respecting robots.txt.",
+  "documents": [
+    {
+      "id": "home",
+      "title": "Cynbit Technologies – Company overview",
+      "type": "company",
+      "category": "company",
+      "url": "https://www.cynbit.in",
+      "text": "Cynbit Technologies is a software and AI automation company based in Jaipur, Rajasthan. Public website describes autonomous AI agents, custom software development, scalable business platforms, custom IT infrastructure, proprietary SaaS products, AI-first thinking, end-to-end development, cloud infrastructure and digital marketing. The company also describes a social impact partnership with Manav Seva Trust for computer and IT teaching in rural areas and government schools.",
+      "metadata": {
+        "location": "Jaipur, Rajasthan"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "services-ai",
+      "title": "AI automation and autonomous agents",
+      "type": "service",
+      "category": "AI Automation",
+      "url": "https://www.cynbit.in/services",
+      "text": "Cynbit describes autonomous AI agents and cognitive automation, smart assistants that manage leads and coordination, LLM automation for manual data entry and document handling, AI voice agents, and integration of AI stacks into existing SaaS platforms.",
+      "metadata": {
+        "keywords": [
+          "autonomous agents",
+          "LLM automation",
+          "AI voice agents",
+          "workflow automation"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "services-software",
+      "title": "Full-stack and backend software development",
+      "type": "service",
+      "category": "Software Development",
+      "url": "https://www.cynbit.in/services",
+      "text": "Cynbit describes scalable web and mobile platforms, full-stack development, secure backend systems, cloud solutions and legacy system modernization. Publicly listed frameworks include React, Next.js, NestJS, FastAPI, Django and Tailwind; languages include TypeScript, Python, Go, Rust, Java and C++.",
+      "metadata": {
+        "keywords": [
+          "web application",
+          "mobile app",
+          "backend",
+          "SaaS",
+          "legacy migration"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "services-cloud",
+      "title": "Cloud infrastructure and migration",
+      "type": "service",
+      "category": "Cloud Infrastructure",
+      "url": "https://www.cynbit.in/services",
+      "text": "Cynbit describes cloud infrastructure and deployment across AWS and Azure, secure cloud foundations, cloud migration and modernization of monolithic systems into distributed systems. The services page lists cloud and operations technologies including Docker, Kubernetes, Terraform and CI/CD.",
+      "metadata": {
+        "keywords": [
+          "AWS",
+          "Azure",
+          "Docker",
+          "Kubernetes",
+          "Terraform",
+          "migration"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "services-marketing",
+      "title": "Digital marketing, SEO and CRM automation",
+      "type": "service",
+      "category": "Digital Marketing & SEO",
+      "url": "https://www.cynbit.in/services",
+      "text": "Cynbit describes performance advertising, technical SEO, CRM automation and funnel optimization. The public service page mentions Google and Meta Ads, technical SEO, automated lead nurturing and conversion-focused landing pages.",
+      "metadata": {
+        "keywords": [
+          "SEO",
+          "Google Ads",
+          "Meta Ads",
+          "CRM",
+          "lead generation",
+          "funnels"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "product-studio",
+      "title": "Cynbit Studio",
+      "type": "product",
+      "category": "EdTech & Career Learning",
+      "url": "https://www.cynbit.in/products#cynbit-studio",
+      "text": "Cynbit Studio is described as an AI-powered career growth and learning platform for students and developers. Public features include placement assessment, adaptive learning paths, AI coding missions, AI code evaluation, AI mentor support, mock interviews, resume tools, job matching analysis, skill tracking and certificates.",
+      "metadata": {
+        "product": "Cynbit Studio"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "product-tenantease",
+      "title": "TenantEase",
+      "type": "product",
+      "category": "Property Management",
+      "url": "https://www.cynbit.in/products#tenantease",
+      "text": "TenantEase is described as a smart property and tenant management platform. Public features include property and unit tracking, tenant profiles, rent and payment tracking, automated reminders, payment history, occupancy and revenue dashboards.",
+      "metadata": {
+        "product": "TenantEase"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "product-revio",
+      "title": "Revio",
+      "type": "product",
+      "category": "Reputation Management",
+      "url": "https://www.cynbit.in/products#revio",
+      "text": "Revio is described as an AI reputation and sentiment management platform. Public features include cross-platform review sync, AI-assisted review responses, sentiment intelligence, crisis detection, multi-location management and role-based access for admins, managers and advisors.",
+      "metadata": {
+        "product": "Revio"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-wizhealth",
+      "title": "WizHealth: AI Diagnostic Triage: Enhancing Medical Efficiency.",
+      "type": "case_study",
+      "category": "Healthcare",
+      "url": "https://www.cynbit.in/case-studies/wizhealth-ai-diagnostic",
+      "text": "Client/project: WizHealth. Industry: Healthcare. Challenge: Clinicians were overwhelmed with a high volume of symptoms, making it difficult to prioritize urgent cases effectively. Solution: Built an AI model that categorizes symptoms based on severity and urgency, integrating directly with existing patient records. Published outcome: Improved triage efficiency by 25% and reduced turnaround time for urgent patient consultations. Technologies and capabilities: AI / Machine Learning, healthcare workflow, patient records.",
+      "metadata": {
+        "client_label": "WizHealth",
+        "challenge": "Clinicians were overwhelmed with a high volume of symptoms, making it difficult to prioritize urgent cases effectively.",
+        "solution": "Built an AI model that categorizes symptoms based on severity and urgency, integrating directly with existing patient records.",
+        "outcome_as_published": "Improved triage efficiency by 25% and reduced turnaround time for urgent patient consultations.",
+        "technologies": [
+          "AI / Machine Learning",
+          "healthcare workflow",
+          "patient records"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-pragya",
+      "title": "Pragya Healths: IoT Remote Patient Monitoring for Rural Health.",
+      "type": "case_study",
+      "category": "Healthcare",
+      "url": "https://www.cynbit.in/case-studies/pragya-healths-remote-monitoring",
+      "text": "Client/project: Pragya Healths. Industry: Healthcare. Challenge: Chronic patients in remote areas lacked consistent monitoring, leading to avoidable emergency situations. Solution: Developed a mobile app that syncs vitals from wearable devices to a central clinician dashboard with automated alerts. Published outcome: Achieved a 40% reduction in emergency room visits for patients enrolled in the monitoring program. Technologies and capabilities: IoT, mobile app, wearable integration, dashboards, alerts.",
+      "metadata": {
+        "client_label": "Pragya Healths",
+        "challenge": "Chronic patients in remote areas lacked consistent monitoring, leading to avoidable emergency situations.",
+        "solution": "Developed a mobile app that syncs vitals from wearable devices to a central clinician dashboard with automated alerts.",
+        "outcome_as_published": "Achieved a 40% reduction in emergency room visits for patients enrolled in the monitoring program.",
+        "technologies": [
+          "IoT",
+          "mobile app",
+          "wearable integration",
+          "dashboards",
+          "alerts"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-wild-basil",
+      "title": "Wild Basil: Blockchain-Lite Transparency for Sustainable Food.",
+      "type": "case_study",
+      "category": "Food / Supply Chain",
+      "url": "https://www.cynbit.in/case-studies/wild-basil-supply-chain",
+      "text": "Client/project: Wild Basil. Industry: Food / Supply Chain. Challenge: Customers were increasingly demanding proof of sourcing for organic labels, which was difficult to provide manually. Solution: Built a QR-based tracking system that allows customers to scan a meal and see the entire journey from farm to table. Published outcome: Strengthened brand trust and drove a 20% increase in premium subscription orders. Technologies and capabilities: Supply-chain traceability, QR codes, tracking.",
+      "metadata": {
+        "client_label": "Wild Basil",
+        "challenge": "Customers were increasingly demanding proof of sourcing for organic labels, which was difficult to provide manually.",
+        "solution": "Built a QR-based tracking system that allows customers to scan a meal and see the entire journey from farm to table.",
+        "outcome_as_published": "Strengthened brand trust and drove a 20% increase in premium subscription orders.",
+        "technologies": [
+          "Supply-chain traceability",
+          "QR codes",
+          "tracking"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-sofiasa",
+      "title": "Sofiasa: Modernizing Legacy ERP for the Digital Era.",
+      "type": "case_study",
+      "category": "Enterprise Software",
+      "url": "https://www.cynbit.in/case-studies/sofiasa-erp-modernization",
+      "text": "Client/project: Sofiasa. Industry: Enterprise Software. Challenge: An outdated UI/UX made the platform difficult to navigate, resulting in slow employee onboarding and high error rates. Solution: Re-engineered the frontend using React and a custom design system focused on efficiency and cognitive load reduction. Published outcome: Reduced employee onboarding time by 60% and increased daily active users by 30%. Technologies and capabilities: ERP modernization, React, frontend engineering, UX.",
+      "metadata": {
+        "client_label": "Sofiasa",
+        "challenge": "An outdated UI/UX made the platform difficult to navigate, resulting in slow employee onboarding and high error rates.",
+        "solution": "Re-engineered the frontend using React and a custom design system focused on efficiency and cognitive load reduction.",
+        "outcome_as_published": "Reduced employee onboarding time by 60% and increased daily active users by 30%.",
+        "technologies": [
+          "ERP modernization",
+          "React",
+          "frontend engineering",
+          "UX"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-econtentprep",
+      "title": "EContentPrep: AI-Driven Adaptive Learning Pathways for EdTech.",
+      "type": "case_study",
+      "category": "Education / EdTech",
+      "url": "https://www.cynbit.in/case-studies/econtentprep-adaptive-learning",
+      "text": "Client/project: EContentPrep. Industry: Education / EdTech. Challenge: Static curriculum paths lead to disengagement and lower completion rates among diverse learner groups. Solution: Created an adaptive engine that analyzes performance data to dynamically adjust lesson difficulty and format. Published outcome: Increased course completion rates by 45% and significantly improved student satisfaction scores. Technologies and capabilities: AI, adaptive learning, performance analytics, EdTech.",
+      "metadata": {
+        "client_label": "EContentPrep",
+        "challenge": "Static curriculum paths lead to disengagement and lower completion rates among diverse learner groups.",
+        "solution": "Created an adaptive engine that analyzes performance data to dynamically adjust lesson difficulty and format.",
+        "outcome_as_published": "Increased course completion rates by 45% and significantly improved student satisfaction scores.",
+        "technologies": [
+          "AI",
+          "adaptive learning",
+          "performance analytics",
+          "EdTech"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-cloudy-tales",
+      "title": "Cloudy Tales: Real-time Collaborative Engine for Digital Storytellers.",
+      "type": "case_study",
+      "category": "Software / Collaboration",
+      "url": "https://www.cynbit.in/case-studies/cloudy-tales-collaboration",
+      "text": "Client/project: Cloudy Tales. Industry: Software / Collaboration. Challenge: Users experienced significant lag and document conflicts when multiple writers attempted to edit simultaneously. Solution: Refactored the communication layer using optimized WebSockets and Conflict-free Replicated Data Types (CRDTs). Published outcome: Delivered a zero-latency collaborative environment supporting 50k+ active writers globally. Technologies and capabilities: WebSockets, CRDTs, real-time collaboration, backend.",
+      "metadata": {
+        "client_label": "Cloudy Tales",
+        "challenge": "Users experienced significant lag and document conflicts when multiple writers attempted to edit simultaneously.",
+        "solution": "Refactored the communication layer using optimized WebSockets and Conflict-free Replicated Data Types (CRDTs).",
+        "outcome_as_published": "Delivered a zero-latency collaborative environment supporting 50k+ active writers globally.",
+        "technologies": [
+          "WebSockets",
+          "CRDTs",
+          "real-time collaboration",
+          "backend"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-urban-wardrobe",
+      "title": "Urban Wardrobe: AR Virtual Try-On: Redefining the Fashion Experience.",
+      "type": "case_study",
+      "category": "Retail / Fashion",
+      "url": "https://www.cynbit.in/case-studies/urban-wardrobe-ar-integration",
+      "text": "Client/project: Urban Wardrobe. Industry: Retail / Fashion. Challenge: High return rates due to sizing and fit issues were eroding profit margins for the online boutique. Solution: Developed a mobile-optimized AR fitting room that utilizes camera data to provide accurate size recommendations and visual overlays. Published outcome: Saw a 22% reduction in return rates and a 15% increase in average order value (AOV). Technologies and capabilities: AR, e-commerce, mobile UX, recommendations.",
+      "metadata": {
+        "client_label": "Urban Wardrobe",
+        "challenge": "High return rates due to sizing and fit issues were eroding profit margins for the online boutique.",
+        "solution": "Developed a mobile-optimized AR fitting room that utilizes camera data to provide accurate size recommendations and visual overlays.",
+        "outcome_as_published": "Saw a 22% reduction in return rates and a 15% increase in average order value (AOV).",
+        "technologies": [
+          "AR",
+          "e-commerce",
+          "mobile UX",
+          "recommendations"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-evento",
+      "title": "Evento: Scaling Real-time Ticketing for Major Entertainment.",
+      "type": "case_study",
+      "category": "Events / Ticketing",
+      "url": "https://www.cynbit.in/case-studies/evento-ticketing-scalability",
+      "text": "Client/project: Evento. Industry: Events / Ticketing. Challenge: Legacy servers frequently crashed during high-demand ticket drops, leading to lost revenue and customer frustration. Solution: Implemented a serverless architecture with elastic scaling and a prioritized queuing system using AWS Lambda and SQS. Published outcome: Successfully managed 100k+ concurrent users with zero downtime during the Summer Beats tour. Technologies and capabilities: AWS Lambda, SQS, serverless, scalability, ticketing.",
+      "metadata": {
+        "client_label": "Evento",
+        "challenge": "Legacy servers frequently crashed during high-demand ticket drops, leading to lost revenue and customer frustration.",
+        "solution": "Implemented a serverless architecture with elastic scaling and a prioritized queuing system using AWS Lambda and SQS.",
+        "outcome_as_published": "Successfully managed 100k+ concurrent users with zero downtime during the Summer Beats tour.",
+        "technologies": [
+          "AWS Lambda",
+          "SQS",
+          "serverless",
+          "scalability",
+          "ticketing"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-marketing-addict",
+      "title": "Marketing Addict: AI-Powered Campaign Optimization for Global Marketing.",
+      "type": "case_study",
+      "category": "Marketing",
+      "url": "https://www.cynbit.in/case-studies/marketing-addict-ai-optimization",
+      "text": "Client/project: Marketing Addict. Industry: Marketing. Challenge: Manually managing cross-channel campaigns was inefficient and led to fragmented data silos, making it difficult to measure true ROI. Solution: Integrated an AI-driven analytics engine that unified data from Meta, Google, and TikTok, providing real-time spend recommendations. Published outcome: Achieved a 35% improvement in client ROI and reduced manual reporting time by 50%. Technologies and capabilities: AI analytics, marketing, predictive recommendations, dashboards.",
+      "metadata": {
+        "client_label": "Marketing Addict",
+        "challenge": "Manually managing cross-channel campaigns was inefficient and led to fragmented data silos, making it difficult to measure true ROI.",
+        "solution": "Integrated an AI-driven analytics engine that unified data from Meta, Google, and TikTok, providing real-time spend recommendations.",
+        "outcome_as_published": "Achieved a 35% improvement in client ROI and reduced manual reporting time by 50%.",
+        "technologies": [
+          "AI analytics",
+          "marketing",
+          "predictive recommendations",
+          "dashboards"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-globalpay",
+      "title": "GlobalPay: Revolutionizing cross-border payments for the next billion users.",
+      "type": "case_study",
+      "category": "Fintech",
+      "url": "https://www.cynbit.in/case-studies/fintech-payments-evolution",
+      "text": "Client/project: GlobalPay. Industry: Fintech. Challenge: Existing systems struggled with high latency and complex regulatory compliance across multiple jurisdictions. Solution: Built a microservices-based ledger system using Node.js and PostgreSQL, deployed on an auto-scaling Kubernetes cluster with real-time fraud detection. Published outcome: Successfully handled 2.4M+ active daily users with sub-200ms transaction latency and stated compliance across 15 countries. Technologies and capabilities: Fintech, Node.js, PostgreSQL, Kubernetes, fraud detection.",
+      "metadata": {
+        "client_label": "GlobalPay",
+        "challenge": "Existing systems struggled with high latency and complex regulatory compliance across multiple jurisdictions.",
+        "solution": "Built a microservices-based ledger system using Node.js and PostgreSQL, deployed on an auto-scaling Kubernetes cluster with real-time fraud detection.",
+        "outcome_as_published": "Successfully handled 2.4M+ active daily users with sub-200ms transaction latency and stated compliance across 15 countries.",
+        "technologies": [
+          "Fintech",
+          "Node.js",
+          "PostgreSQL",
+          "Kubernetes",
+          "fraud detection"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-elitevogue",
+      "title": "EliteVogue: Next-Gen Headless Commerce for Global Fashion.",
+      "type": "case_study",
+      "category": "Retail / E-commerce",
+      "url": "https://www.cynbit.in/case-studies/fashion-headless-commerce",
+      "text": "Client/project: EliteVogue. Industry: Retail / E-commerce. Challenge: Legacy monolithic commerce platform was too slow for modern mobile users and difficult to scale globally. Solution: Architected a headless commerce solution using Next.js for the frontend and a decoupled GraphQL API for backend services. Published outcome: Reduced load speed to 0.8s on average and saw a 38% increase in conversion rate within the first quarter. Technologies and capabilities: Next.js, GraphQL, headless commerce, performance.",
+      "metadata": {
+        "client_label": "EliteVogue",
+        "challenge": "Legacy monolithic commerce platform was too slow for modern mobile users and difficult to scale globally.",
+        "solution": "Architected a headless commerce solution using Next.js for the frontend and a decoupled GraphQL API for backend services.",
+        "outcome_as_published": "Reduced load speed to 0.8s on average and saw a 38% increase in conversion rate within the first quarter.",
+        "technologies": [
+          "Next.js",
+          "GraphQL",
+          "headless commerce",
+          "performance"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-careplus",
+      "title": "CarePlus: Migrating critical health data to the cloud with zero downtime.",
+      "type": "case_study",
+      "category": "Healthcare / Cloud",
+      "url": "https://www.cynbit.in/case-studies/healthcare-cloud-migration",
+      "text": "Client/project: CarePlus. Industry: Healthcare / Cloud. Challenge: Managing large volumes of sensitive data while ensuring 24/7 availability for emergency medical services. Solution: Implemented a phased migration strategy using AWS Snowball and real-time database replication, with a focus on zero-trust security architecture. Published outcome: Completed migration 3 months ahead of schedule with zero data loss and a stated 100% security audit pass rate. Technologies and capabilities: Cloud migration, AWS, replication, security.",
+      "metadata": {
+        "client_label": "CarePlus",
+        "challenge": "Managing large volumes of sensitive data while ensuring 24/7 availability for emergency medical services.",
+        "solution": "Implemented a phased migration strategy using AWS Snowball and real-time database replication, with a focus on zero-trust security architecture.",
+        "outcome_as_published": "Completed migration 3 months ahead of schedule with zero data loss and a stated 100% security audit pass rate.",
+        "technologies": [
+          "Cloud migration",
+          "AWS",
+          "replication",
+          "security"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "case-trendmart",
+      "title": "TrendMart: Hyper-local SEO strategy yields record organic growth for retail chain.",
+      "type": "case_study",
+      "category": "Retail / Marketing",
+      "url": "https://www.cynbit.in/case-studies/retail-seo-growth",
+      "text": "Client/project: TrendMart. Industry: Retail / Marketing. Challenge: Low visibility in local search results despite having a strong physical presence. Solution: Developed a custom location-based landing page engine and implemented an automated technical SEO audit system. Published outcome: Achieved a 140% increase in organic traffic and a 60% boost in store visits directly from search results. Technologies and capabilities: Technical SEO, local SEO, automation, retail.",
+      "metadata": {
+        "client_label": "TrendMart",
+        "challenge": "Low visibility in local search results despite having a strong physical presence.",
+        "solution": "Developed a custom location-based landing page engine and implemented an automated technical SEO audit system.",
+        "outcome_as_published": "Achieved a 140% increase in organic traffic and a 60% boost in store visits directly from search results.",
+        "technologies": [
+          "Technical SEO",
+          "local SEO",
+          "automation",
+          "retail"
+        ]
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "blog-ai-support",
+      "title": "Future of AI-Powered Customer Support Systems",
+      "type": "blog",
+      "category": "AI Chatbots",
+      "url": "https://www.cynbit.in/blog/future-ai-customer-support",
+      "text": "Cynbit discusses embedded and proactive AI support, predictive friction analysis, multimodal support, sentiment-aware interaction, human handoff and RAG-grounded support knowledge. The article emphasizes privacy-first handling for sensitive inputs.",
+      "metadata": {
+        "published_date": "February 26, 2026",
+        "topic": "AI Chatbots"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "blog-ai-agents",
+      "title": "How AI Agents Are Transforming Business Operations in 2026",
+      "type": "blog",
+      "category": "AI Agents",
+      "url": "https://www.cynbit.in/blog/ai-agents-business-operations",
+      "text": "Cynbit describes AI agents as LLM-powered systems that can reason, use tools, observe outcomes and maintain memory. Examples include sales outreach, procurement and DevOps. The article emphasizes human-in-the-loop controls, sandboxing, observability and avoiding agent loops.",
+      "metadata": {
+        "published_date": "October 13, 2025",
+        "topic": "AI Agents"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "blog-small-business",
+      "title": "How Small Businesses Can Automate Operations Using AI",
+      "type": "blog",
+      "category": "Business Automation",
+      "url": "https://www.cynbit.in/blog/small-business-ai-automation",
+      "text": "Cynbit discusses identifying repetitive tasks, lead response, follow-ups, document extraction, invoicing, meeting intelligence, content repurposing and SEO automation. It recommends starting with a process audit and expanding in stages.",
+      "metadata": {
+        "published_date": "January 3, 2026",
+        "topic": "Business Automation"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "blog-lead-gen",
+      "title": "How Companies Are Using AI for Lead Generation in 2026",
+      "type": "blog",
+      "category": "Marketing",
+      "url": "https://www.cynbit.in/blog/ai-lead-generation",
+      "text": "Cynbit discusses signal-based prospect research, lookalike modelling using case studies, personalized outreach, interactive lead-capture tools, first-party data and human-assisted qualification. Use privacy-conscious first-party visitor data.",
+      "metadata": {
+        "published_date": "May 1, 2025",
+        "topic": "Marketing"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "blog-ai-trends",
+      "title": "Best AI Automation Trends for Businesses in 2026",
+      "type": "blog",
+      "category": "AI Automation",
+      "url": "https://www.cynbit.in/blog/ai-automation-trends-2026",
+      "text": "Cynbit discusses autonomous agents, personalized customer experiences, predictive analytics, document extraction and low-code AI platforms. It warns against automating broken processes, ignoring data quality and neglecting monitoring.",
+      "metadata": {
+        "published_date": "December 15, 2024",
+        "topic": "AI Automation"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "blog-crm",
+      "title": "Best CRM Automation Strategies for Modern Companies in 2026",
+      "type": "blog",
+      "category": "IT Strategy",
+      "url": "https://www.cynbit.in/blog/best-crm-automation-strategies",
+      "text": "Cynbit describes AI-assisted CRM data capture, lead scoring and routing, relationship mapping, churn prevention, personalized follow-ups and integrations. It warns about over-automation, dirty data and lack of human oversight.",
+      "metadata": {
+        "published_date": "January 30, 2026",
+        "topic": "IT Strategy"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "blog-dashboard",
+      "title": "Why Every Startup Needs a Custom Dashboard in 2026",
+      "type": "blog",
+      "category": "SaaS Development",
+      "url": "https://www.cynbit.in/blog/why-startups-need-custom-dashboards",
+      "text": "Cynbit explains custom operational dashboards, data integration, anomaly detection, drill-down analytics and operational metrics. Technologies discussed include Next.js, D3.js, Go or Node.js, TimescaleDB and ClickHouse.",
+      "metadata": {
+        "published_date": "February 8, 2025",
+        "topic": "SaaS Development"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "blog-ai-software",
+      "title": "AI vs Traditional Software Development in 2026",
+      "type": "blog",
+      "category": "Software Development",
+      "url": "https://www.cynbit.in/blog/ai-vs-traditional-software",
+      "text": "Cynbit discusses AI-native software lifecycles, model-first design, AI-assisted QA and predictive maintenance, while emphasizing human engineering oversight, security and verification.",
+      "metadata": {
+        "published_date": "April 4, 2025",
+        "topic": "Software Development"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "blog-privacy",
+      "title": "Data Privacy as a Competitive Advantage",
+      "type": "blog",
+      "category": "Marketing / Privacy",
+      "url": "https://www.cynbit.in/blog/data-privacy-advantage",
+      "text": "Cynbit frames ethical data collection and privacy as foundations of customer trust. This content supports privacy-aware data collection and transparent handling in SmartConnect AI.",
+      "metadata": {
+        "published_date": "August 28, 2024",
+        "topic": "Marketing / Privacy"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    },
+    {
+      "id": "contact",
+      "title": "Contact and enquiry information",
+      "type": "contact",
+      "category": "contact",
+      "url": "https://www.cynbit.in/contact",
+      "text": "Cynbit contact page provides an enquiry form with required full name, email address and message fields, plus optional company and industry. It publishes opportunities@cynbit.in and support@cynbit.in, phone numbers +91 89479 62667 and +91 78912 09777, and an address in Pratap Nagar, Jaipur, Rajasthan. Users can ask to discuss a project by email or phone.",
+      "metadata": {
+        "emails": [
+          "opportunities@cynbit.in",
+          "support@cynbit.in"
+        ],
+        "phone_numbers": [
+          "+91 89479 62667",
+          "+91 78912 09777"
+        ],
+        "city": "Jaipur, Rajasthan"
+      },
+      "source_status": "public_page_extracted_2026-11-01"
+    }
+  ]
+}
