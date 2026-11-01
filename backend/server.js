@@ -72,9 +72,9 @@ app.post('/api/smartconnect/chat', async (req, res) => {
     const pythonApiUrl = process.env.SMARTCONNECT_ML_API_URL || 'http://127.0.0.1:8001/chat';
 
     try {
-      // Forward to Python FastAPI with timeout controller
+      // Forward to Python FastAPI with timeout controller (25s)
       const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 8000); // 8s timeout
+      const timeoutId = setTimeout(() => controller.abort(), 25000);
 
       const mlResponse = await fetch(pythonApiUrl, {
         method: 'POST',
@@ -90,8 +90,7 @@ app.post('/api/smartconnect/chat', async (req, res) => {
 
       if (mlResponse.ok) {
         const mlData = await mlResponse.json();
-        // Successfully received actual response from Python FastAPI ML backend!
-        if (mlData.reply && !mlData.reply.includes('temporarily unavailable')) {
+        if (mlData.reply) {
           return res.json({
             success: true,
             assistant: mlData.assistant || 'SmartConnect AI',
@@ -102,13 +101,12 @@ app.post('/api/smartconnect/chat', async (req, res) => {
             sources: mlData.sources || [],
             llm_status: mlData.llm_status,
             disclaimer: mlData.disclaimer,
-            data: mlData // Keep nested for backward compatibility
+            data: mlData
           });
         }
       }
-      console.warn(`[SmartConnect Proxy] Python API responded with status ${mlResponse.status}`);
+      console.warn(`[SmartConnect Proxy] Python API responded with status ${mlResponse ? mlResponse.status : 'unknown'}`);
     } catch (proxyError) {
-      // Python API unreachable (ECONNREFUSED / timeout / offline)
       console.warn(`[SmartConnect Proxy] Python API unreachable at ${pythonApiUrl}: ${proxyError.message}. Using resilient fallback.`);
     }
 
@@ -118,16 +116,18 @@ app.post('/api/smartconnect/chat', async (req, res) => {
       conversationHistory: history
     });
 
+    const isGeneral = (fallbackResult.intent === 'general_qa');
     return res.json({
       success: true,
       assistant: 'SmartConnect AI',
       reply: fallbackResult.message,
-      intent: { primary_intent: fallbackResult.intent || 'General Query' },
-      recommendations: fallbackResult.recommendations || [],
-      related_resources: fallbackResult.caseStudies || [],
-      sources: fallbackResult.sources || [],
-      llm_status: 'offline_fallback',
-      disclaimer: 'Prototype recommendations based on verified Cynbit content.',
+      intent: { primary_intent: isGeneral ? 'General Knowledge' : (fallbackResult.intent || 'General Query') },
+      recommendations: isGeneral ? [] : (fallbackResult.recommendations || []),
+      related_resources: isGeneral ? [] : (fallbackResult.caseStudies || []),
+      sources: isGeneral ? [] : (fallbackResult.sources || []),
+      leadBlueprint: fallbackResult.leadBlueprint || null,
+      llm_status: fallbackResult.llm_status || 'offline_fallback',
+      disclaimer: isGeneral ? null : (fallbackResult.disclaimer || null),
       data: fallbackResult
     });
   } catch (error) {

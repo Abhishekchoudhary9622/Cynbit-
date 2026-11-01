@@ -6,33 +6,28 @@
 const API_BASE_URL = import.meta.env?.VITE_API_BASE_URL || '/api/smartconnect';
 
 /**
- * Client-side grounded fallback response engine
- * Ensures 100% uninterrupted user experience even during network interruptions or upstream rate limits
+ * Client-side fallback response handler
+ * Respects query context: never turns general questions into sales pitches.
  */
 function getClientFallbackResponse(query) {
   const qLower = (query || '').toLowerCase().trim();
 
   // 0. Greeting check
-  if (/^(hi+|hello+|hey+|howdy|hola|greetings|good\s+(morning|afternoon|evening)|yo|sup)/i.test(qLower) && qLower.split(' ').length <= 4) {
+  if (/^(hi+|hello+|hey+|howdy|hola|greetings|good\s+(morning|afternoon|evening)|yo|sup)/i.test(qLower) && qLower.split(/\s+/).length <= 4) {
     return {
       assistant: 'SmartConnect AI',
-      reply: "Hello! I'm SmartConnect AI, your architectural assistant for Cynbit Technologies. I can help you explore our services, understand our products (TenantEase, Revio, Cynbit Studio), discover relevant case studies, or find solutions for your business requirements. How can I help you today?",
+      reply: "Hello! I'm SmartConnect AI, your conversational assistant for Cynbit Technologies. I can answer any general technical, programming, AI, career, or business question, as well as provide verified details about Cynbit's engineering services, SaaS products (TenantEase, Revio, Cynbit Studio), and documented case studies. How can I help you today?",
       intent: { primary_intent: 'Greeting' },
       recommendations: [],
       related_resources: [],
-      sources: [
-        { title: 'Cynbit Services', url: '/services' },
-        { title: 'Cynbit Products', url: '/products' },
-        { title: 'Case Studies', url: '/case-studies' },
-        { title: 'Contact Us', url: '/contact' }
-      ],
+      sources: [],
       llm_status: 'ok',
       disclaimer: null
     };
   }
 
   // 1. Cynbit Studio vs Revio comparison
-  if ((qLower.includes('studio') && qLower.includes('revio')) || qLower.includes('difference between')) {
+  if (qLower.includes('studio') && qLower.includes('revio')) {
     return {
       assistant: 'SmartConnect AI',
       reply: 'Here is a comparison between **Cynbit Studio** and **Revio**:\n\n' +
@@ -55,8 +50,7 @@ function getClientFallbackResponse(query) {
       ],
       related_resources: [],
       sources: [
-        { title: 'Cynbit Products Suite', url: '/products' },
-        { title: 'Contact Team', url: '/contact' }
+        { title: 'Cynbit Products Suite', url: '/products' }
       ],
       llm_status: 'offline_fallback',
       disclaimer: 'Grounded in verified Cynbit documentation.'
@@ -64,7 +58,7 @@ function getClientFallbackResponse(query) {
   }
 
   // 2. TenantEase inquiry
-  if (qLower.includes('tenantease') || qLower.includes('tenant') || qLower.includes('rent')) {
+  if (qLower.includes('tenantease') || qLower.includes('tenant ease')) {
     return {
       assistant: 'SmartConnect AI',
       reply: '**TenantEase** is Cynbit\'s proprietary PropTech property management ecosystem designed for landlords, PG operators, and real estate managers.\n\n' +
@@ -87,98 +81,60 @@ function getClientFallbackResponse(query) {
     };
   }
 
-  // 3. AI Application / Building Software / Custom Architecture
-  if (qLower.includes('build') || qLower.includes('ai-powered') || qLower.includes('application') || qLower.includes('app') || qLower.includes('automate') || qLower.includes('software')) {
+  // 3. Cynbit Services or Case Studies explicitly requested
+  if (qLower.includes('cynbit') || (qLower.includes('case stud') && (qLower.includes('your') || qLower.includes('show')))) {
     return {
       assistant: 'SmartConnect AI',
-      reply: 'Cynbit Technologies delivers end-to-end engineering for **AI-powered applications** and custom scalable software architectures from Jaipur, Rajasthan:\n\n' +
-        '• **Autonomous AI Agents**: Goal-driven LLM workflow agents capable of tool execution, customer query triage, and automated operational routing.\n' +
-        '• **Full-Stack Development**: High-performance bespoke web and mobile platforms built with React, Next.js, Go, and Python.\n' +
-        '• **Cloud & DevOps**: Scalable AWS/Azure infrastructure with automated CI/CD and zero-downtime database migrations.',
-      intent: { primary_intent: 'AI Automation & Software Development' },
+      reply: 'Cynbit Technologies is an engineering architecture firm based in Jaipur, Rajasthan. We deliver custom digital architectures across core domains:\n\n' +
+        '• **Autonomous AI Agents**: Goal-driven LLM workflow agents.\n' +
+        '• **Full-Stack Software Development**: Resilient web & mobile systems with React, Next.js, Go, and Python.\n' +
+        '• **Cloud Infrastructure & Migration**: Scalable AWS/Azure deployments with zero downtime.\n' +
+        '• **Proprietary Products**: TenantEase, Revio, and Cynbit Studio.\n\n' +
+        'Explore our offerings at [Services](/services), [Products](/products), or [Case Studies](/case-studies).',
+      intent: { primary_intent: 'Cynbit Services' },
       recommendations: [
         {
-          title: 'Autonomous AI Agents & Automation',
+          title: 'Autonomous AI Agents',
           category: 'AI Automation',
           url: '/services',
-          why_recommended: 'Ideal for automating high-volume customer inquiries, workflows, and complex routing with autonomous LLMs.'
+          why_recommended: 'Autonomous LLM workflow agents designed for high operational throughput.'
         },
         {
           title: 'Full-Stack Software Development',
           category: 'Software Development',
           url: '/services',
-          why_recommended: 'Custom software platforms engineered from scratch with clean system design, APIs, and high test coverage.'
+          why_recommended: 'Custom web and mobile platforms built from scratch with modern technology stacks.'
         }
       ],
       related_resources: [
         {
-          id: 'case-ai-triage',
-          title: 'AI Diagnostic Triage: Enhancing Medical Efficiency (Pragya Healths)',
+          title: 'AI Diagnostic Triage (Pragya Healths)',
           type: 'case_study',
           category: 'Healthcare',
           url: '/case-studies',
-          matched_text: '64% reduction in triage delays with autonomous clinical triage agents and vector search classification.'
-        },
-        {
-          id: 'case-logistics-erp',
-          title: 'Modernizing Legacy ERP for the Digital Era (Global Logistics Corp)',
-          type: 'case_study',
-          category: 'Cloud Infrastructure',
-          url: '/case-studies',
-          matched_text: '300% throughput boost and 42% cloud compute cost reduction via containerized microservices.'
+          matched_text: '64% reduction in patient triage wait times with autonomous clinical agents.'
         }
       ],
       sources: [
-        { title: 'AI Automation Services', url: '/services' },
-        { title: 'Software Engineering Services', url: '/services' },
-        { title: 'Contact and Consultation', url: '/contact' }
+        { title: 'Services Hub', url: '/services' },
+        { title: 'Products Suite', url: '/products' },
+        { title: 'Case Studies', url: '/case-studies' }
       ],
       llm_status: 'offline_fallback',
-      disclaimer: 'Prototype recommendations based on public Cynbit website content.'
+      disclaimer: 'Grounded in verified Cynbit documentation.'
     };
   }
 
-  // 4. Default services / company overview
+  // 4. Honest retryable error for all general questions (no unsolicited sales pitches)
   return {
     assistant: 'SmartConnect AI',
-    reply: 'Cynbit Technologies is an engineering architecture firm based in Jaipur, Rajasthan. We deliver custom digital architectures across four core domains:\n\n' +
-      '1. **Autonomous AI Agents & Automation**: Self-orchestrating LLM workflow agents.\n' +
-      '2. **Full-Stack Software Development**: Resilient web & mobile systems with React, Next.js, Go, and Python.\n' +
-      '3. **Cloud Infrastructure & Migration**: Scalable AWS/Azure deployments with zero downtime.\n' +
-      '4. **Technical SEO & Growth**: Programmatic search engine architectures and organic footfall.\n\n' +
-      'How can our engineering architects assist your business requirements today?',
-    intent: { primary_intent: 'Services Overview' },
-    recommendations: [
-      {
-        title: 'Autonomous AI Agents',
-        category: 'AI Automation',
-        url: '/services',
-        why_recommended: 'Autonomous LLM workflow agents designed for high operational throughput.'
-      },
-      {
-        title: 'Full-Stack Software Development',
-        category: 'Software Development',
-        url: '/services',
-        why_recommended: 'Custom web and mobile platforms built from scratch with modern technology stacks.'
-      }
-    ],
-    related_resources: [
-      {
-        title: 'Documented Case Studies',
-        type: 'case_study',
-        category: 'Case Studies',
-        url: '/case-studies',
-        matched_text: 'Verified client outcomes across healthcare, logistics, edtech, and e-commerce.'
-      }
-    ],
-    sources: [
-      { title: 'Services Hub', url: '/services' },
-      { title: 'Products Suite', url: '/products' },
-      { title: 'Case Studies', url: '/case-studies' },
-      { title: 'Contact Us', url: '/contact' }
-    ],
-    llm_status: 'offline_fallback',
-    disclaimer: 'Prototype recommendations based on public Cynbit website content.'
+    reply: 'I am currently unable to reach the AI model to generate this response. Please check your connection and try asking again in a moment.',
+    intent: { primary_intent: 'General Query' },
+    recommendations: [],
+    related_resources: [],
+    sources: [],
+    llm_status: 'error',
+    disclaimer: null
   };
 }
 
@@ -197,7 +153,7 @@ export async function sendChatMessage({ query, history = [], top_k = 5 }) {
 
   const cleanQuery = query.trim();
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 25000); // 25s timeout
+  const timeoutId = setTimeout(() => controller.abort(), 28000); // 28s timeout
 
   try {
     const response = await fetch(`${API_BASE_URL}/chat`, {
@@ -224,10 +180,11 @@ export async function sendChatMessage({ query, history = [], top_k = 5 }) {
     return {
       assistant: json.assistant || 'SmartConnect AI',
       reply: json.reply || json.data?.message || '',
-      intent: json.intent || { primary_intent: 'General Inquiry' },
+      intent: json.intent || { primary_intent: 'General Query' },
       recommendations: json.recommendations || json.data?.recommendations || [],
       related_resources: json.related_resources || json.data?.caseStudies || [],
       sources: json.sources || json.data?.sources || [],
+      leadBlueprint: json.leadBlueprint || json.data?.leadBlueprint || null,
       llm_status: json.llm_status || 'ok',
       disclaimer: json.disclaimer || null,
       raw: json,
@@ -235,7 +192,6 @@ export async function sendChatMessage({ query, history = [], top_k = 5 }) {
   } catch (error) {
     clearTimeout(timeoutId);
     console.warn('[SmartConnect API Client] Fallback activated due to:', error.message);
-    // Graceful client fallback ensures zero user-facing 500 error popups
     return getClientFallbackResponse(cleanQuery);
   }
 }

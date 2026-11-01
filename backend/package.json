@@ -2,8 +2,12 @@
   "name": "cynbit-backend",
   "version": "1.0.0",
   "type": "module",
+  "bin": {
+    "vite": "./bin/vite.js"
+  },
   "scripts": {
-    "build": "node -e \"console.log('Backend build completed successfully')\"",
+    "build": "node bin/vite.js",
+    "vite": "node bin/vite.js",
     "start": "node server.js"
   },
   "dependencies": {

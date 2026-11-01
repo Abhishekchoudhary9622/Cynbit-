@@ -71,13 +71,14 @@ export default function SmartConnectChat({
         top_k: 5,
       });
 
-      // Detect if user requirement was identified to offer contact handoff
-      let leadBlueprint = null;
+      // Offer contact handoff / lead blueprint ONLY when explicitly provided by backend or requested by user
+      let leadBlueprint = response.leadBlueprint || null;
       const lower = textToSend.toLowerCase();
-      const isRequirement = (response.intent?.primary_intent && response.intent.primary_intent !== 'General Knowledge' && response.intent.primary_intent !== 'General Inquiry') ||
-        lower.includes('i run') || lower.includes('automate') || lower.includes('we need') || lower.includes('build') || lower.includes('saas') || lower.includes('migrate');
+      const explicitContactRequest = lower.includes('hire cynbit') || lower.includes('contact cynbit') ||
+        lower.includes('work with cynbit') || lower.includes('book a demo') || lower.includes('schedule a call') ||
+        lower.includes('request a quote');
 
-      if (isRequirement && response.recommendations && response.recommendations.length > 0) {
+      if (!leadBlueprint && explicitContactRequest && response.recommendations && response.recommendations.length > 0) {
         const topRec = response.recommendations[0];
         leadBlueprint = {
           summary: {

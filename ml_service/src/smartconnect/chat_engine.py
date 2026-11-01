@@ -6,30 +6,40 @@ from typing import Any
 from .llm_client import LLMClient
 
 
-SYSTEM_PROMPT = """You are SmartConnect AI, an intelligent and helpful conversational assistant for Cynbit Technologies (cynbit.in).
+GENERAL_SYSTEM_PROMPT = """You are SmartConnect AI, an intelligent, versatile, and highly capable conversational AI assistant.
+You can answer ANY question asked by a user across a wide variety of domains:
+- Programming, algorithms, debugging, and software engineering (provide clear, correct, production-grade code with complexity analysis)
+- Artificial intelligence, machine learning, deep learning, NLP, and computer vision
+- Mathematics, physics, engineering, and science
+- Career guidance, interview preparation, and technical resume/portfolio advice
+- Professional writing, documentation, emails, and drafting
+- General knowledge, history, geography, and culture
 
-You are designed to answer questions across a wide range of technical and business subjects while having specialized, verified knowledge about Cynbit Technologies.
+Guidelines:
+1. Provide accurate, clear, in-depth, and helpful responses.
+2. For coding questions, provide working code in the requested language with explanation.
+3. Maintain full conversation context across turns (e.g., if a user refers to 'it' or 'the code', refer to previous turns).
+4. Do NOT attach unsolicited Cynbit service recommendations or sales pitches to general questions. Answer the question directly and naturally.
+5. Be warm, professional, and intellectually rigorous."""
 
-You are not a rigid FAQ chatbot. You support natural, flowing paired conversations.
 
-Users can ask questions about software architecture, programming, artificial intelligence, machine learning, cloud engineering, business requirements, education, career preparation, and Cynbit products (TenantEase, Revio, Cynbit Studio).
+CYNBIT_SYSTEM_PROMPT = """You are SmartConnect AI, an intelligent conversational assistant with specialized knowledge about Cynbit Technologies (cynbit.in).
 
-Your responsibilities:
-1. Understand the user's actual question and intent.
-2. Respond naturally, clearly, and helpfully.
-3. Maintain context across multiple messages.
-4. Provide concrete technical explanations with examples or working code when requested.
-5. Use verified Cynbit knowledge whenever answering company-specific questions.
-6. Provide markdown links for Cynbit resources (/services, /products, /case-studies, /contact).
-7. Never invent Cynbit company information, pricing, or client claims.
-8. Never force service recommendations into unrelated conversations.
-9. Ask clarifying questions only when helpful for architectural scoping."""
+Your goals:
+1. Answer questions about Cynbit Technologies, its services, products (TenantEase, Revio, Cynbit Studio), team, case studies, and engineering capabilities using verified reference material.
+2. When answering general questions connected to Cynbit (mixed queries), combine your broad technical knowledge with verified Cynbit capabilities.
+3. Provide helpful Markdown links for Cynbit resources when relevant:
+   - Services: [Our Services](/services)
+   - Products: [Products Suite](/products)
+   - Case Studies: [Case Studies](/case-studies)
+   - Contact: [Contact Page](/contact)
+4. Do not invent pricing or client details that are not supported by the verified reference material.
+5. Maintain conversational context across multi-turn exchanges."""
 
-CYNBIT_KEYWORDS = {
-    "cynbit", "tenantease", "tenant ease", "revio", "cynbit studio", 
-    "bitelevate", "bit elevate", "jaipur", "mohak", "ashutosh", "dhawan", 
-    "manav seva", "pragya healths", "global logistics", "wizhealth", 
-    "urban wardrobe", "cloudy tales", "cynbit.in"
+
+CYNBIT_CORE_ENTITIES = {
+    "cynbit", "tenantease", "tenant ease", "revio", "cynbit studio",
+    "bitelevate", "bit elevate", "jaipur", "cynbit.in"
 }
 
 
@@ -42,60 +52,61 @@ class SmartConnectChatEngine:
     def _classify_query(query: str, history: list[dict[str, str]] | None = None) -> str:
         q_lower = query.lower().strip()
 
-        # Check for any greeting variation (hi, hii, hiii, hello, heyy, hey, howdy, etc.)
+        # 1. Greetings (short greeting turns)
         if re.search(r"^(hi+|hello+|hey+|howdy|hola|greetings|good\s+(morning|afternoon|evening|day)|yo|sup)\b", q_lower):
-            # Only treat as greeting if it's a short intro turn
             if len(q_lower.split()) <= 4:
                 return "greeting"
 
-        # Check for direct mentions of Cynbit or its products/services
-        has_cynbit_kw = any(kw in q_lower for kw in CYNBIT_KEYWORDS)
+        # Check for explicit mentions of Cynbit entities using word boundaries
+        has_cynbit_mention = any(
+            re.search(r"\b" + re.escape(entity) + r"\b", q_lower)
+            for entity in CYNBIT_CORE_ENTITIES
+        )
 
-        # Check for direct queries about company offerings
-        company_phrases = [
-            "what services do you", "what services does cynbit", "what do you offer",
-            "your services", "your products", "tell me about tenant", "tell me about revio",
-            "tell me about studio", "who are you", "contact you", "contact cynbit",
-            "hire you", "your pricing", "rates or packages", "schedule a call", 
-            "show relevant case studies", "case studies in healthcare", "healthcare case studies",
-            "which solution is suitable", "what is tenantease", "what is cynbit",
-            "cynbit studio", "how does cynbit work", "how can i contact cynbit",
-            "tell me about cynbit's products", "cynbit's products", "cynbit services"
+        # Check for explicit questions about the company itself
+        company_intents = [
+            "what services does cynbit", "what does cynbit do", "what services do you offer",
+            "what do you offer", "your services", "your products", "cynbit products",
+            "cynbit's products", "cynbit services", "tell me about tenantease",
+            "tell me about revio", "tell me about cynbit studio", "cynbit studio and revio",
+            "compare cynbit studio", "show relevant case studies", "cynbit case studies",
+            "how can i contact cynbit", "contact cynbit", "cynbit pricing", "work at cynbit",
+            "about cynbit", "who founded cynbit", "cynbit office"
         ]
-        is_company_query = any(cp in q_lower for cp in company_phrases)
+        is_direct_company_query = any(ci in q_lower for ci in company_intents)
 
-        # Check if mixed query (general technical + Cynbit context)
-        is_mixed = has_cynbit_kw and any(p in q_lower for p in [
-            "how cynbit", "how could cynbit", "how can cynbit", "cynbit services could help",
-            "cynbit capabilities", "help me implement", "which cynbit", "and cynbit"
-        ])
+        # Mixed queries: technical or general topic explicitly linked to Cynbit
+        # e.g., "Explain RAG and how Cynbit could implement it", "How could Cynbit use it?"
+        mixed_indicators = [
+            "how cynbit", "how could cynbit", "how can cynbit", "cynbit implement",
+            "cynbit use", "cynbit capabilities", "with cynbit", "using cynbit", "cynbit help"
+        ]
+        is_mixed = has_cynbit_mention and any(m in q_lower for m in mixed_indicators)
+
+        # Context-based Cynbit reference: e.g. "How could Cynbit use it?" or "Can Cynbit build this?"
+        if history and not has_cynbit_mention:
+            # Check if current turn asks about Cynbit specifically
+            if any(re.search(r"\b" + re.escape(ci) + r"\b", q_lower) for ci in ["cynbit", "your team", "your company"]):
+                is_mixed = True
 
         if is_mixed:
             return "mixed"
 
-        if has_cynbit_kw or is_company_query:
+        if has_cynbit_mention or is_direct_company_query:
             return "cynbit"
 
-        # Check if user presents a business requirement seeking services/recommendations
-        business_phrases = [
-            "i run an e-commerce", "i run an ecommerce", "i run a business", "i have a business",
-            "i want to automate", "i need ai", "i need automation", "we need", "customer support automation",
-            "we need to build a", "looking for an agency", "looking to migrate", "looking for software",
-            "can you help us build a scalable saas", "build a scalable saas", "help us migrate",
-            "automation for my", "automate customer support", "customer support",
-            "i want to build", "want to build an ai", "ai-powered application", "ai-powered app",
-            "build an application", "build an app", "build a platform", "build a web application",
-            "create an ai", "develop an ai", "help us build", "need a web app", "need a developer"
+        # Explicit commercial service inquiry: User explicitly seeking client engagement
+        # e.g., "I want to build an AI-powered application.", "I need an app developed", "hire your company"
+        commercial_hire_phrases = [
+            "hire your company", "hire cynbit", "work with your team", "request a quote",
+            "book a consultation", "schedule a demo", "i want to build an ai",
+            "build an ai-powered", "build an ai application", "build an ai platform",
+            "develop an ai-powered", "customer support automation", "ai customer support"
         ]
-        if any(bp in q_lower for bp in business_phrases):
+        if any(ch in q_lower for ch in commercial_hire_phrases):
             return "cynbit"
 
-        # Contextual check: If history was discussing Cynbit and user asks follow-up
-        if history:
-            last_turn = history[-1].get("content", "").lower()
-            if any(kw in last_turn for kw in CYNBIT_KEYWORDS) and any(f in q_lower for f in ["how much", "cost", "demo", "contact", "pricing"]):
-                return "cynbit"
-
+        # All other queries: General knowledge, coding, math, career, writing, AI/ML, etc.
         return "general"
 
     @staticmethod
@@ -112,7 +123,7 @@ class SmartConnectChatEngine:
                         "type": item.get("type", "website"),
                         "url": url,
                     })
-        return sources[:8]
+        return sources[:6]
 
     @staticmethod
     def _build_context(
@@ -120,234 +131,91 @@ class SmartConnectChatEngine:
         recommendation: dict[str, Any],
     ) -> str:
         chunks: list[str] = []
-        for item in knowledge[:5]:
+        for item in knowledge[:4]:
             chunks.append(
                 f"[SOURCE: {item.get('url', '')}]\n"
                 f"TITLE: {item.get('title', '')}\n"
-                f"TYPE: {item.get('type', '')}\n"
-                f"CONTENT: {str(item.get('text', ''))[:1800]}"
+                f"CATEGORY: {item.get('category', '')}\n"
+                f"CONTENT: {str(item.get('text', ''))[:1600]}"
             )
         for key in ("recommended_services_products", "related_case_studies_and_articles"):
-            for item in recommendation.get(key, [])[:5]:
+            for item in recommendation.get(key, [])[:3]:
                 chunks.append(
                     f"[SOURCE: {item.get('url', '')}]\n"
                     f"TITLE: {item.get('title', '')}\n"
-                    f"TYPE: {item.get('type', '')}\n"
                     f"CATEGORY: {item.get('category', '')}\n"
-                    f"WHY/MATCH: {item.get('why_recommended', item.get('matched_text', ''))}"
+                    f"DETAILS: {item.get('why_recommended', item.get('matched_text', ''))}"
                 )
-        return "\n\n---\n\n".join(chunks)[:10500]
+        return "\n\n---\n\n".join(chunks)[:9000]
 
-    @staticmethod
-    def _fallback_reply(
+    def _format_conversation_history(
+        self, history: list[dict[str, str]] | None, limit: int = 10
+    ) -> list[dict[str, str]]:
+        messages: list[dict[str, str]] = []
+        if not history:
+            return messages
+        for turn in history[-limit:]:
+            role = turn.get("role")
+            content = turn.get("content", "")
+            if role in ("user", "assistant") and content.strip():
+                messages.append({"role": role, "content": content.strip()[:2000]})
+        return messages
+
+    def _cynbit_offline_fallback(
+        self,
         query: str,
-        intent: dict[str, Any],
-        recommendation: dict[str, Any],
         knowledge: list[dict[str, Any]],
+        recommendation: dict[str, Any],
     ) -> str:
-        primary_intent = intent.get("primary_intent", "Software Architecture & AI Solutions")
+        q_lower = query.lower()
         services = recommendation.get("recommended_services_products", [])
         related = recommendation.get("related_case_studies_and_articles", [])
-        
+
         lines = [
-            f"Cynbit Technologies delivers custom digital architecture tailored for **{primary_intent}**:\n"
+            "*(Notice: Grounded response based on verified Cynbit documentation)*\n"
         ]
 
-        if "ai" in query.lower() or "build" in query.lower() or "app" in query.lower() or "platform" in query.lower():
+        if "tenantease" in q_lower or "tenant" in q_lower:
             lines.append(
-                "• **Autonomous AI Agents & Workflows**: Multi-turn goal-driven LLM agents that execute tasks, triage complex requests, and automate operations.\n"
-                "• **Full-Stack Software Development**: Custom high-throughput web and mobile platforms built with React, Next.js, Go, and Python.\n"
-                "• **Cloud & DevOps Modernization**: Resilient AWS/Azure cloud deployments with zero-downtime database cutovers.\n"
+                "**TenantEase** is Cynbit's proprietary PropTech property management platform designed for landlords and property managers.\n\n"
+                "• **Automated Rent Reminders**: Direct WhatsApp & SMS notifications with integrated payment links.\n"
+                "• **Instant UPI Reconciliation**: Real-time payment tracking to eliminate manual bookkeeping.\n"
+                "• **Digital Tenancy & Inventory**: Digital lease generation, room management, and automated tenant records.\n\n"
+                "Learn more on our [Products page](/products)."
+            )
+        elif "studio" in q_lower and "revio" in q_lower:
+            lines.append(
+                "**Cynbit Studio vs. Revio**:\n\n"
+                "• **Cynbit Studio**: An adaptive developer intelligence & career prep platform featuring real-time AI code analysis, Skill Radar diagnostics, and pull request review assistance.\n\n"
+                "• **Revio**: An AI-powered customer review & multi-location reputation management SaaS that synchronizes reviews across Google Maps, Trustpilot, and Meta with automated sentiment-aware response drafting.\n\n"
+                "Explore both on our [Products page](/products)."
+            )
+        elif "case stud" in q_lower:
+            lines.append(
+                "**Cynbit Published Case Studies**:\n\n"
+                "1. **Pragya Healths (AI Diagnostic Triage)**: Achieved a 64% reduction in patient triage wait times and 99.2% classification accuracy using autonomous clinical triage agents.\n\n"
+                "2. **Global Logistics Corp (Legacy ERP Modernization)**: 300% throughput increase and 42% cloud compute cost reduction via containerized Go microservices and zero-downtime cutover.\n\n"
+                "Read the full details on our [Case Studies page](/case-studies)."
+            )
+        else:
+            lines.append(
+                "**Cynbit Technologies** delivers custom digital engineering and autonomous AI systems from Jaipur, Rajasthan:\n\n"
+                "• **Autonomous AI Agents**: Goal-driven multi-turn LLM workflow agents for query triage, document automation, and operational routing.\n"
+                "• **Full-Stack Software Development**: Scalable bespoke web and mobile platforms engineered with modern stacks.\n"
+                "• **Cloud Infrastructure & Modernization**: High-resilience cloud architectures and legacy migration with zero downtime.\n"
+                "• **Proprietary Products**: TenantEase (PropTech), Revio (Reputation AI), and Cynbit Studio (Developer Intelligence).\n\n"
+                "For inquiries, visit our [Contact page](/contact) or email `opportunities@cynbit.in`."
             )
 
         if services:
-            lines.append("**Recommended Offerings:**")
-            for item in services[:3]:
-                title = item.get("title", "Cynbit Offering")
+            lines.append("\n**Relevant Offerings:**")
+            for item in services[:2]:
+                title = item.get("title", "Offering")
                 url = item.get("url", "/services")
                 why = item.get("why_recommended", "")
-                if why:
-                    lines.append(f"• **[{title}]({url})**: {why}")
-                else:
-                    lines.append(f"• **[{title}]({url})**")
-            lines.append("")
+                lines.append(f"• [{title}]({url}): {why}" if why else f"• [{title}]({url})")
 
-        if related:
-            lines.append("**Relevant Case Studies:**")
-            for item in related[:2]:
-                title = item.get("title", "Documented Case Study")
-                url = item.get("url", "/case-studies")
-                matched = item.get("matched_text", "")
-                if matched:
-                    lines.append(f"• **[{title}]({url})**: {matched}")
-                else:
-                    lines.append(f"• **[{title}]({url})**")
-            lines.append("")
-
-        lines.append(
-            "Would you like to discuss this architecture with our team? "
-            "You can reach our engineering architects directly at `opportunities@cynbit.in` or via our [Contact page](/contact)."
-        )
         return "\n".join(lines)
-
-    @staticmethod
-    def _generate_intelligent_general_fallback(query: str) -> str:
-        q = query.lower().strip()
-
-        # 1. Binary Search
-        if "binary search" in q or "binary_search" in q:
-            return (
-                "Here is an efficient, clean implementation of **Binary Search** in Python:\n\n"
-                "```python\n"
-                "def binary_search(arr: list[int], target: int) -> int:\n"
-                "    \"\"\"Return the index of target in a sorted list arr, or -1 if not found.\"\"\"\n"
-                "    left, right = 0, len(arr) - 1\n"
-                "    while left <= right:\n"
-                "        mid = left + (right - left) // 2\n"
-                "        if arr[mid] == target:\n"
-                "            return mid\n"
-                "        elif arr[mid] < target:\n"
-                "            left = mid + 1\n"
-                "        else:\n"
-                "            right = mid - 1\n"
-                "    return -1\n\n"
-                "# Example:\n"
-                "data = [2, 4, 7, 10, 15, 23, 38, 45]\n"
-                "print(binary_search(data, 15))  # Output: 4\n"
-                "```\n\n"
-                "• **Time Complexity**: `O(log n)`\n"
-                "• **Space Complexity**: `O(1)` (iterative)"
-            )
-
-        # 2. Neural Networks
-        if "neural network" in q:
-            return (
-                "A **Neural Network** is a computational architecture inspired by biological neurons, organized into structured mathematical layers:\n\n"
-                "1. **Input Layer**: Ingests raw multidimensional feature vectors.\n"
-                "2. **Hidden Layer(s)**: Applies linear transformations followed by non-linear activations: `z = W · x + b`, `a = σ(z)`.\n"
-                "3. **Output Layer**: Produces probabilistic classifications (via Softmax) or continuous values.\n\n"
-                "**Core Training Lifecycle**:\n"
-                "• **Forward Pass**: Passes input through matrices to compute predictions.\n"
-                "• **Loss Calculation**: Computes divergence between prediction and ground truth (e.g. Cross-Entropy, MSE).\n"
-                "• **Backpropagation**: Calculates partial derivatives `∂L/∂W` via the chain rule to update weights with gradient descent."
-            )
-
-        # 3. Python Code / Example
-        if "python example" in q or "code example" in q or "give me a python" in q:
-            return (
-                "Here is a minimal Neural Network implementation from scratch in Python using NumPy:\n\n"
-                "```python\n"
-                "import numpy as np\n\n"
-                "def sigmoid(x):\n"
-                "    return 1 / (1 + np.exp(-x))\n\n"
-                "def sigmoid_derivative(x):\n"
-                "    return x * (1 - x)\n\n"
-                "# XOR training data\n"
-                "X = np.array([[0,0], [0,1], [1,0], [1,1]])\n"
-                "y = np.array([[0], [1], [1], [0]])\n\n"
-                "# Initialize weights and bias\n"
-                "np.random.seed(42)\n"
-                "weights = np.random.uniform(size=(2, 1))\n"
-                "bias = 0.5\n\n"
-                "# Forward pass\n"
-                "predictions = sigmoid(np.dot(X, weights) + bias)\n"
-                "print('Initial Output:\\n', predictions)\n"
-                "```"
-            )
-
-        # 4. Code explanation
-        if "explain each line" in q or "explain the code" in q:
-            return (
-                "Here is a line-by-line explanation of the Python code:\n\n"
-                "1. `import numpy as np`: Loads NumPy for hardware-accelerated matrix operations.\n"
-                "2. `sigmoid(x)`: Implements the non-linear logistic function `1 / (1 + e^-x)` mapping values to `(0, 1)`.\n"
-                "3. `sigmoid_derivative(x)`: Computes `x * (1 - x)` used for gradient computation in backprop.\n"
-                "4. `X` & `y`: Define the feature matrix and ground-truth target labels.\n"
-                "5. `np.dot(X, weights) + bias`: Multiplies the input matrix by weight parameters and adds bias.\n"
-                "6. `predictions`: Applies activation to obtain final layer activations."
-            )
-
-        # 5. Machine Learning
-        if "machine learning" in q:
-            return (
-                "**Machine Learning (ML)** is the science of training algorithms to discover underlying patterns from data to make predictions without hardcoded rules.\n\n"
-                "• **Supervised Learning**: Models learn from labeled pairs (e.g. regression, classification).\n"
-                "• **Unsupervised Learning**: Models discover latent structures in unlabeled data (e.g. clustering, PCA).\n"
-                "• **Reinforcement Learning**: Agents learn optimal policies through trial, error, and scalar rewards."
-            )
-
-        # 6. SQL vs MongoDB
-        if "sql" in q and "mongodb" in q:
-            return (
-                "**SQL vs MongoDB**: Architectural Comparison:\n\n"
-                "| Dimension | SQL (PostgreSQL / MySQL) | MongoDB (NoSQL) |\n"
-                "|---|---|---|\n"
-                "| **Data Paradigm** | Relational tables, rows, columns | BSON document collections |\n"
-                "| **Schema** | Rigid, strict schema with migrations | Flexible, dynamic JSON documents |\n"
-                "| **Transactions** | Full ACID guarantees out of the box | Multi-document ACID supported |\n"
-                "| **Query Language** | Structured SQL queries & joins | MQL (MongoDB Query Language) aggregation pipelines |\n"
-                "| **Scaling** | Vertical scaling + read replicas | Native horizontal sharding |"
-            )
-
-        # 7. Transformers
-        if "transformer" in q:
-            return (
-                "**Transformers** ('Attention Is All You Need', Vaswani et al., 2017) are deep learning architectures based on **Self-Attention**:\n\n"
-                "1. **Self-Attention**: Computes dynamic relationships between all tokens in a sequence: `Attention(Q, K, V) = softmax(QK^T / √d_k)V`.\n"
-                "2. **Multi-Head Attention**: Allows the model to attend to information at different subspace representations simultaneously.\n"
-                "3. **Positional Encoding**: Injects positional vectors so the network understands word order without recurrence.\n"
-                "4. **Feed-Forward Layers & Residuals**: Preserves gradient stability across deep multi-billion parameter stacks."
-            )
-
-        # 8. Full-Stack Interview
-        if "interview" in q:
-            return (
-                "Here is an actionable roadmap for **Full-Stack Developer Interviews**:\n\n"
-                "1. **Frontend Architecture**: React virtual DOM reconciliation, hooks lifecycle, state management, and Core Web Vitals (LCP, INP, CLS).\n"
-                "2. **Backend Engineering**: RESTful API design, database indexing, connection pooling, caching strategies (Redis), and concurrency.\n"
-                "3. **Data Structures & Algorithms**: Hash maps, two-pointer techniques, sliding window, binary search, trees, and graphs.\n"
-                "4. **System Design**: Microservices vs monolith, load balancing, rate limiting, and zero-downtime deployment strategies."
-            )
-
-        # 9. Resignation Email
-        if "resignation" in q:
-            return (
-                "Here is a polite and professional **Resignation Email** template:\n\n"
-                "**Subject:** Resignation — [Your Full Name]\n\n"
-                "Dear [Manager's Name],\n\n"
-                "Please accept this email as formal notification that I am resigning from my position as [Your Job Title] at [Company Name]. My last working day will be [Date, e.g. two weeks from today].\n\n"
-                "I am sincerely grateful for the opportunities I have had during my time with the team. I have enjoyed our collaboration and appreciate the support provided during my tenure.\n\n"
-                "During my notice period, I will do everything possible to ensure a seamless transition of my responsibilities and complete any outstanding deliverables.\n\n"
-                "I wish you and the team continued success.\n\n"
-                "Sincerely,\n\n"
-                "[Your Full Name]\n"
-                "[Your Contact Information]"
-            )
-
-        # 10. Poetry / Haiku
-        if "haiku" in q or "poem" in q:
-            return (
-                "Golden autumn leaves,\n"
-                "Dancing gently in the breeze,\n"
-                "Winter whispers near."
-            )
-
-        # 11. React / Frontend
-        if "react" in q or "virtual dom" in q or "hooks" in q:
-            return (
-                "**React** is a declarative, component-based UI library developed by Meta:\n\n"
-                "• **Virtual DOM**: React maintains a lightweight in-memory representation of the DOM. When state changes, React computes the diff (reconciliation) and batches minimal real-DOM updates.\n"
-                "• **Hooks**: Functions like `useState`, `useEffect`, `useCallback`, and `useMemo` let functional components manage state and side effects.\n"
-                "• **One-Way Data Flow**: State flows down via props and events bubble up, ensuring predictable application architecture."
-            )
-
-        # General helpful conversational response
-        return (
-            f"I can certainly help you explore that topic! Whether you're working on software engineering, "
-            f"AI/ML architecture, system design, or business workflows, feel free to share more details about "
-            f"what you'd like to build or achieve. I can also help you explore Cynbit Technologies' verified "
-            f"services, proprietary SaaS products (TenantEase, Revio, Cynbit Studio), and documented case studies!"
-        )
 
     def chat(
         self,
@@ -361,16 +229,18 @@ class SmartConnectChatEngine:
 
         query_type = self._classify_query(query, history)
 
-        # 1. GREETINGS (hi, hii, hello, hey, good morning, etc.)
+        # ---------------------------------------------------------
+        # 1. GREETING PATH
+        # ---------------------------------------------------------
         if query_type == "greeting":
-            reply = (
-                "Hello! I'm SmartConnect AI, your architectural assistant for Cynbit Technologies. "
-                "I can help you explore our services, understand our products (TenantEase, Revio, Cynbit Studio), "
-                "discover relevant case studies, or assist with your business and technical questions. How can I help you today?"
-            )
             return {
                 "assistant": "SmartConnect AI",
-                "reply": reply,
+                "reply": (
+                    "Hello! I'm SmartConnect AI, your conversational assistant for Cynbit Technologies. "
+                    "I can answer any general technical, programming, AI, career, or business question, "
+                    "as well as provide verified details about Cynbit's engineering services, SaaS products "
+                    "(TenantEase, Revio, Cynbit Studio), and documented case studies. How can I help you today?"
+                ),
                 "intent": {"primary_intent": "Greeting", "ranked_intents": []},
                 "recommendations": [],
                 "related_resources": [],
@@ -379,43 +249,50 @@ class SmartConnectChatEngine:
                 "disclaimer": None,
             }
 
-        # 2. GENERAL KNOWLEDGE QUERY
+        # ---------------------------------------------------------
+        # 2. GENERAL QUESTIONS PATH (Open-ended, programming, AI/ML, career, etc.)
+        # ---------------------------------------------------------
         if query_type == "general":
             intent = {"primary_intent": "General Knowledge", "ranked_intents": []}
-            recommendations = []
-            related_resources = []
-            sources = []
-            disclaimer = None
+            history_messages = self._format_conversation_history(history, limit=10)
+            llm_messages: list[dict[str, str]] = [
+                {"role": "system", "content": GENERAL_SYSTEM_PROMPT},
+                *history_messages,
+                {"role": "user", "content": query},
+            ]
 
-            if self.llm.is_configured:
-                messages: list[dict[str, str]] = [
-                    {"role": "system", "content": SYSTEM_PROMPT}
-                ]
-                for turn in (history or [])[-10:]:
-                    messages.append({"role": turn["role"], "content": turn["content"][:2000]})
-                messages.append({"role": "user", "content": query})
-                try:
-                    reply = self.llm.generate(messages)
-                    llm_status = "ok"
-                except Exception:
-                    llm_status = "fallback_after_provider_error"
-                    reply = self._generate_intelligent_general_fallback(query)
-            else:
+            if not self.llm.is_configured:
                 llm_status = "not_configured"
-                reply = self._generate_intelligent_general_fallback(query)
+                reply = (
+                    "I am currently unable to reach the AI model. "
+                    "Please verify your connection and try asking your question again in a moment."
+                )
+            else:
+                try:
+                    reply = self.llm.generate(llm_messages)
+                    llm_status = "ok"
+                except Exception as err:
+                    llm_status = "fallback_after_provider_error"
+                    reply = (
+                        "I am currently experiencing a temporary connection issue while contacting the AI model. "
+                        "Please verify your connection and try asking your question again in a moment."
+                    )
 
+            # Strictly no unsolicited recommendations or blueprints for general queries
             return {
                 "assistant": "SmartConnect AI",
                 "reply": reply,
                 "intent": intent,
-                "recommendations": recommendations,
-                "related_resources": related_resources,
-                "sources": sources,
+                "recommendations": [],
+                "related_resources": [],
+                "sources": [],
                 "llm_status": llm_status,
-                "disclaimer": disclaimer,
+                "disclaimer": None,
             }
 
-        # 3. CYNBIT-SPECIFIC OR MIXED QUERY
+        # ---------------------------------------------------------
+        # 3. CYNBIT-SPECIFIC OR MIXED QUESTIONS PATH
+        # ---------------------------------------------------------
         intent = self.recommender.predict_intent(query, top_k=3)
         recommendation = self.recommender.recommend(query, top_k=top_k)
         knowledge = self.recommender.search_knowledge(query, top_k=top_k)
@@ -425,29 +302,44 @@ class SmartConnectChatEngine:
             recommendation.get("related_case_studies_and_articles", []),
         )
 
-        llm_status = "not_configured"
-        reply = self._fallback_reply(query, intent, recommendation, knowledge)
-        if self.llm.is_configured:
-            context = self._build_context(knowledge, recommendation)
-            system_msg = SYSTEM_PROMPT + "\n\nVERIFIED CYNBIT REFERENCE MATERIAL:\n" + context
-            messages: list[dict[str, str]] = [
-                {"role": "system", "content": system_msg}
-            ]
-            for turn in (history or [])[-10:]:
-                messages.append({"role": turn["role"], "content": turn["content"][:2000]})
-            messages.append({"role": "user", "content": query})
+        context = self._build_context(knowledge, recommendation)
+        system_content = (
+            f"{CYNBIT_SYSTEM_PROMPT}\n\n"
+            f"=== VERIFIED CYNBIT REFERENCE MATERIAL ===\n{context}\n"
+            f"=== END OF REFERENCE MATERIAL ===\n\n"
+            f"Use the verified material above to accurately answer questions regarding Cynbit. "
+            f"If the user asks a mixed question (e.g. general tech + Cynbit implementation), "
+            f"use your general knowledge for the technical concept and verified Cynbit material for Cynbit claims."
+        )
+
+        history_messages = self._format_conversation_history(history, limit=10)
+        llm_messages = [
+            {"role": "system", "content": system_content},
+            *history_messages,
+            {"role": "user", "content": query},
+        ]
+
+        if not self.llm.is_configured:
+            llm_status = "not_configured"
+            reply = self._cynbit_offline_fallback(query, knowledge, recommendation)
+        else:
             try:
-                reply = self.llm.generate(messages)
+                reply = self.llm.generate(llm_messages)
                 llm_status = "ok"
             except Exception:
                 llm_status = "fallback_after_provider_error"
+                reply = self._cynbit_offline_fallback(query, knowledge, recommendation)
+
+        # Include recommendations and resources for Cynbit and mixed inquiries
+        services_recs = recommendation.get("recommended_services_products", [])
+        related_resources = recommendation.get("related_case_studies_and_articles", [])
 
         return {
             "assistant": "SmartConnect AI",
             "reply": reply,
             "intent": intent,
-            "recommendations": recommendation.get("recommended_services_products", []),
-            "related_resources": recommendation.get("related_case_studies_and_articles", []),
+            "recommendations": services_recs if services_recs else [],
+            "related_resources": related_resources if related_resources else [],
             "sources": sources,
             "llm_status": llm_status,
             "disclaimer": recommendation.get("disclaimer"),
