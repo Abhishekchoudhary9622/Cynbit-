@@ -4,6 +4,7 @@ import re
 from typing import Any
 
 from .llm_client import LLMClient
+from .knowledge_engine import ConversationalKnowledgeEngine
 
 
 GENERAL_SYSTEM_PROMPT = """You are SmartConnect AI, an intelligent, versatile, and highly capable conversational AI assistant.
@@ -263,20 +264,16 @@ class SmartConnectChatEngine:
 
             if not self.llm.is_configured:
                 llm_status = "not_configured"
-                reply = (
-                    "I am currently unable to reach the AI model. "
-                    "Please verify your connection and try asking your question again in a moment."
-                )
+                kb = ConversationalKnowledgeEngine.get_response(query, history=history)
+                reply = kb["reply"]
             else:
                 try:
                     reply = self.llm.generate(llm_messages)
                     llm_status = "ok"
                 except Exception as err:
                     llm_status = "fallback_after_provider_error"
-                    reply = (
-                        "I am currently experiencing a temporary connection issue while contacting the AI model. "
-                        "Please verify your connection and try asking your question again in a moment."
-                    )
+                    kb = ConversationalKnowledgeEngine.get_response(query, history=history)
+                    reply = kb["reply"]
 
             # Strictly no unsolicited recommendations or blueprints for general queries
             return {
@@ -321,14 +318,16 @@ class SmartConnectChatEngine:
 
         if not self.llm.is_configured:
             llm_status = "not_configured"
-            reply = self._cynbit_offline_fallback(query, knowledge, recommendation)
+            kb = ConversationalKnowledgeEngine.get_response(query, history=history)
+            reply = kb["reply"] if (kb.get("intent", {}).get("primary_intent") != "General Knowledge" or not knowledge) else self._cynbit_offline_fallback(query, knowledge, recommendation)
         else:
             try:
                 reply = self.llm.generate(llm_messages)
                 llm_status = "ok"
             except Exception:
                 llm_status = "fallback_after_provider_error"
-                reply = self._cynbit_offline_fallback(query, knowledge, recommendation)
+                kb = ConversationalKnowledgeEngine.get_response(query, history=history)
+                reply = kb["reply"] if (kb.get("intent", {}).get("primary_intent") != "General Knowledge" or not knowledge) else self._cynbit_offline_fallback(query, knowledge, recommendation)
 
         # Include recommendations and resources for Cynbit and mixed inquiries
         services_recs = recommendation.get("recommended_services_products", [])
