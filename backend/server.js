@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
 import { chatService } from './services/chat.service.js';
 import { recommendationService } from './services/recommendation.service.js';
 import { retrievalService } from './services/retrieval.service.js';
@@ -8,6 +11,10 @@ import { caseStudyService } from './services/caseStudy.service.js';
 import { leadService } from './services/lead.service.js';
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const distPath = path.resolve(__dirname, '../dist');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -249,7 +256,17 @@ app.use('/api', (req, res) => {
   });
 });
 
-import { fileURLToPath } from 'url';
+// Serve static frontend build from dist/ for production deployments (e.g. Render, Railway)
+if (fs.existsSync(distPath)) {
+  app.use(express.static(distPath));
+  // SPA fallback for React Router in Express 5
+  app.use((req, res, next) => {
+    if (req.method === 'GET' && !req.originalUrl.startsWith('/api')) {
+      return res.sendFile(path.join(distPath, 'index.html'));
+    }
+    next();
+  });
+}
 
 // Start server if executed directly as main script
 const isDirectRun = process.argv[1] && (
