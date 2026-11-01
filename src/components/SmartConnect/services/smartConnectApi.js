@@ -3,7 +3,7 @@
  * Interfaces with the Node.js API Gateway (which proxies to Python FastAPI ML backend)
  */
 
-const API_BASE_URL = '/api/smartconnect';
+const API_BASE_URL = import.meta.env?.VITE_API_BASE_URL || '/api/smartconnect';
 
 /**
  * Client-side grounded fallback response engine
